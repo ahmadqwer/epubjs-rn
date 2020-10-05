@@ -29,6 +29,10 @@ const EMBEDDED_HTML = `
   <script>${process.env.EPUBJS}</script>
   <script>${process.env.BRIDGE}</script>
   <style>
+    img{
+      max-width:100% !important;
+      height:auto !important;
+    } 
     body {
       margin: 0;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -100,6 +104,10 @@ class Rendition extends Component {
 
     if (prevProps.fontSize !== this.props.fontSize) {
       this.fontSize(this.props.fontSize);
+    }
+
+    if (prevProps.gap !== this.props.gap) {
+      this.gap(this.props.gap);
     }
 
     if (prevProps.font !== this.props.font) {
@@ -266,7 +274,9 @@ class Rendition extends Component {
   destroy() {
 
   }
-
+  goToLocation(location) {
+    this.sendToBridge("goToLocation", [location]);
+  }
   postMessage(str) {
     if (this.refs.webviewbridge) {
       return this.refs.webviewbridge.postMessage(str);

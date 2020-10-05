@@ -152,6 +152,10 @@ class Epub extends Component{
       return true;
     }
 
+    if (nextProps.fontSize != this.props.fontSize) {
+      return true;
+    }
+    
     return false;
   }
 
@@ -259,6 +263,14 @@ class Epub extends Component{
 
   }
 
+  nextPage(){
+    this.rendition.next()
+  }
+
+  prevPage(){
+    this.rendition.prev()
+  }
+
   loadLocations() {
     return this.book.ready.then(() => {
       // Load in stored locations from json or local storage
@@ -326,6 +338,7 @@ class Epub extends Component{
             this.needsOpen = undefined;
           }
         }}
+        gap={this.props.gap}
         url={this.props.src}
         flow={this.props.flow}
         minSpreadWidth={this.props.minSpreadWidth}

@@ -240,6 +240,16 @@ window.onerror = function (message, file, line, col, error) {
           }
           break;
         }
+        case "goToLocation": {
+          if (rendition) {
+            
+            rendition.display(decoded.args[0]);
+            
+          } else {
+            q.push(message);
+          }
+          break;
+        }
       }
     }
 
